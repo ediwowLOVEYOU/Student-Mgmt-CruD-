@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.11.35327.3
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11520.95 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student Mgmt", "Student Mgmt.csproj", "{A4310F19-07EA-4D5C-B5C1-4636F8185F65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLayer", "..\ModelLayer\ModelLayer.csproj", "{A0C90DF5-75DA-498A-8D91-BFBADFA63C8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer", "..\ServiceLayer\ServiceLayer.csproj", "{F8DAF412-F960-4ED2-BDA3-DCE729492CB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{A4310F19-07EA-4D5C-B5C1-4636F8185F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4310F19-07EA-4D5C-B5C1-4636F8185F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4310F19-07EA-4D5C-B5C1-4636F8185F65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C90DF5-75DA-498A-8D91-BFBADFA63C8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C90DF5-75DA-498A-8D91-BFBADFA63C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C90DF5-75DA-498A-8D91-BFBADFA63C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C90DF5-75DA-498A-8D91-BFBADFA63C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8DAF412-F960-4ED2-BDA3-DCE729492CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DAF412-F960-4ED2-BDA3-DCE729492CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DAF412-F960-4ED2-BDA3-DCE729492CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DAF412-F960-4ED2-BDA3-DCE729492CB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
