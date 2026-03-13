@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ModelLayer\**" />
+    <Compile Remove="ServiceLayer\**" />
+    <EmbeddedResource Remove="ModelLayer\**" />
+    <EmbeddedResource Remove="ServiceLayer\**" />
+    <None Remove="ModelLayer\**" />
+    <None Remove="ServiceLayer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
   </ItemGroup>
 

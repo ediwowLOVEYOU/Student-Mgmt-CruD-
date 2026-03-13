@@ -13,7 +13,7 @@ namespace Student_Mgmt
       
             while (Exits)
             {
-
+                 
                 Console.WriteLine("Welcome to Student Management System");
                 Console.WriteLine("Please select an option:");
                 Console.WriteLine("1.Create Student Information");
