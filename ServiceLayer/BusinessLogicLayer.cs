@@ -16,6 +16,10 @@ namespace ServiceLayer
         {
             return ListOfStudent;
         }
+       public void Delete(Student_Data student)
+        {
+            ListOfStudent.Remove(student);
+        }
  
     }
 
