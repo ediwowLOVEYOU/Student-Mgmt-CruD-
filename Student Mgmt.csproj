@@ -9,17 +9,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataLayers\**" />
+    <Compile Remove="ModelLayers\**" />
     <Compile Remove="ModelLayer\**" />
+    <Compile Remove="PUPSIS_AppServiceLayers\**" />
+    <Compile Remove="PUPSIS_AppServiceLayer\**" />
+    <Compile Remove="ServiceLayers\**" />
     <Compile Remove="ServiceLayer\**" />
+    <EmbeddedResource Remove="DataLayers\**" />
+    <EmbeddedResource Remove="ModelLayers\**" />
     <EmbeddedResource Remove="ModelLayer\**" />
+    <EmbeddedResource Remove="PUPSIS_AppServiceLayers\**" />
+    <EmbeddedResource Remove="PUPSIS_AppServiceLayer\**" />
+    <EmbeddedResource Remove="ServiceLayers\**" />
     <EmbeddedResource Remove="ServiceLayer\**" />
+    <None Remove="DataLayers\**" />
+    <None Remove="ModelLayers\**" />
     <None Remove="ModelLayer\**" />
+    <None Remove="PUPSIS_AppServiceLayers\**" />
+    <None Remove="PUPSIS_AppServiceLayer\**" />
+    <None Remove="ServiceLayers\**" />
     <None Remove="ServiceLayer\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ModelLayer\ModelLayer.csproj" />
-    <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
+    <ProjectReference Include="ModelLayers\ModelLayers.csproj" />
+    <ProjectReference Include="PUPSIS_AppServiceLayers\PUPSIS_AppServiceLayers.csproj" />
+    <ProjectReference Include="ServiceLayers\DataLayers.csproj" />
   </ItemGroup>
 
 </Project>

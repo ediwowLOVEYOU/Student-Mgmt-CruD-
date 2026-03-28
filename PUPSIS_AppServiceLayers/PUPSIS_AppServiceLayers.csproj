@@ -7,13 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ModelLayer\ModelLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="BusinessLogicLayer.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+    <ProjectReference Include="..\ModelLayers\ModelLayers.csproj" />
+    <ProjectReference Include="..\ServiceLayers\DataLayers.csproj" />
   </ItemGroup>
 
 </Project>

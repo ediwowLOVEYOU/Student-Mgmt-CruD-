@@ -1,14 +1,15 @@
-﻿using ModelLayer;
-using ServiceLayer;
+﻿
+using ModelLayers;
+using PUPSIS_AppServiceLayers;
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using System.Linq;
 namespace Student_Mgmt
 {
     internal class Program
     {
-        static StudentManager Manager = new StudentManager();
+
+        static StudentManagerBS Manager = new StudentManagerBS();
         static bool Exits = true;
         static void Main(string[] args)
         {
@@ -20,7 +21,7 @@ namespace Student_Mgmt
                 Console.WriteLine("Please select an option:");
                 Console.WriteLine("1.Create Student Information");
                 Console.WriteLine("2.Retrieve Student Information");
-                Console.WriteLine("3.Update Studen information");
+                Console.WriteLine("3.Update Student information");
                 Console.WriteLine("4.Delete Student Information");
                 Console.WriteLine("5.Exit");
                 Console.WriteLine(" ");
@@ -57,102 +58,89 @@ namespace Student_Mgmt
                     int Age = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Student No:");
                     int IDNo = Convert.ToInt32(Console.ReadLine());
-                    bool existChecker = false;
-                    var Students = Manager.GetAllStudents();
-                    var existingStudent = Students.FirstOrDefault(checker => checker.StudentNoModel == IDNo);
-                    {
-                        if (existingStudent != null)
-                        {
-                            Console.WriteLine("Failed to input, Already exist Student No: " + (existingStudent.StudentNoModel));
-                            existChecker = true;
-                            return;
-                        }
-                        else if (!existChecker)
-                        {
-                            Student_Data student = new Student_Data
-                            {
-                                StudentNoModel = IDNo,
-                                NameModel = Name,
-                                AgeModel = Age,
-                            };
-                            Manager.Add(student);
-                            Console.WriteLine("Succesfuly Added Student");
 
-                        }
-                    }
+                    Student_Data student = new Student_Data
+                    {
+                        StudenID = IDNo,
+                        StudentName = Name,
+                        StudentAge = Age
+                    };
+
+                    if (Manager.Adding(student))
+                        Console.WriteLine("Added!");
+                    else
+                        Console.WriteLine("Already exists!");
                 }
 
 
                 static void RetrieveInfo()
                 {
                     Console.WriteLine("Student Information:");
-                    var Students = Manager.GetAllStudents();
-                    if (!Students.Any())
+
+
+                    var students = Manager.GetAllStudents();
+
+                    if (!students.Any())
                     {
                         Console.WriteLine("Empty Students");
+                        return;
                     }
                     else
                     {
-                        foreach (var student in Students)
+                        foreach (var student in students)
                         {
-                            Console.WriteLine($"ID: {student.StudentNoModel} Name: {student.NameModel} Age: {student.AgeModel}");
+                            Console.WriteLine($"ID: {student.StudenID} Name: {student.StudentName} Age: {student.StudentAge}");
                         }
+
                     }
                     }
 
                     static void UpdateInfo()
-                {
-                    Console.WriteLine("**Updating Info Section**\n");
-                    Console.Write("Student No:");
-                    int CIDNo = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Student Age:");
-                    int CAge = Convert.ToInt32(Console.ReadLine());
-
-                    var Students = Manager.GetAllStudents();
-                    var studentSearch = Students.FirstOrDefault(Search => Search.StudentNoModel == CIDNo && Search.AgeModel == CAge);
-
-                    if (studentSearch != null)
                     {
-                        Console.Write("\nEnter new Name: ");
-                        studentSearch.NameModel = Console.ReadLine();
-
+                        Console.WriteLine("**Updating Info Section**\n");
+                        Console.Write("Student No:");
+                        int CIDNo = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Student Age:");
+                        int CAge = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter new Name: ");
+                        string newName = Console.ReadLine() ?? string.Empty; ;
                         Console.Write("Enter new Age: ");
-                        studentSearch.AgeModel = Convert.ToInt32(Console.ReadLine());
+                        int newAge = Convert.ToInt32(Console.ReadLine());
 
-                        Console.WriteLine("Student updated successfully!");
+                        if (Manager.Update(CIDNo, CAge, newName, newAge))
+                        
+                            Console.WriteLine("Updated successfully!");
+                        else
+                            Console.WriteLine("Student not found!");
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("Try again.");
-                    }
-                }
-         
+
+
+
                 }
                 static void DelInfo()
                 {
-                Console.WriteLine("**Delete Section**\n");
-                
-                Console.Write("Student No:");
-                int DIDNo = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Student Age:");
-                int DAge = Convert.ToInt32(Console.ReadLine());
-                var Students = Manager.GetAllStudents();
+                    Console.WriteLine("**Delete Section**\n");
 
-                var StudentDeleter = Students.FirstOrDefault(StudentD => StudentD.StudentNoModel == DIDNo || StudentD.AgeModel == DAge);
-       
-                    if (StudentDeleter != null)
-                {
-                    Manager.Delete(StudentDeleter);
-                    Console.WriteLine("Succesfuly Remove");
-                }
-                
+                    Console.Write("Student No:");
+                    int DIDNo = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Student Age:");
+                    int DAge = Convert.ToInt32(Console.ReadLine());
+                    var Students = Manager.GetAllStudents();
+
+                    if (Manager.Delete(DIDNo))
+                        Console.WriteLine("Deleted!");
+                    else
+                        Console.WriteLine("Not found!");
+
 
                 }
                 static void Exit()
                 {
-                   Exits = false;
+                    Exits = false;
                     Console.WriteLine("Exit Section");
                 }
             }
         }
-    }
+    
+
