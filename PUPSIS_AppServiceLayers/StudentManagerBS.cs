@@ -6,27 +6,28 @@ namespace PUPSIS_AppServiceLayers
 {
     public class StudentManagerBS
     {
-        private StudentJsonData data = new StudentJsonData();
+        StudentDataService data = new StudentDataService(new StudentSQLData());
         public bool Adding(Student_Data student)
         {
             var exists = data.GetAllStudents()
-                .FirstOrDefault(s => s.StudenID == student.StudenID);
+                .FirstOrDefault(s => s.StudentID == student.StudentID);
 
                  if (exists != null)
-                return false;
+                return false;           
             data.Adding(student);
             return true;
         }
         public bool Update(int id, int age, string newName, int newAge)
         {
             var student = data.GetAllStudents()
-                .FirstOrDefault(s => s.StudenID == id && s.StudentAge == age);
+                .FirstOrDefault(s => s.StudentID == id && s.StudentAge == age);
                     
               if (student == null)
                 return false;
 
             student.StudentName = newName;
              student.StudentAge = newAge;
+            data.Update(student);   
             return true;
         }
         public bool HasStudents()
@@ -42,7 +43,7 @@ namespace PUPSIS_AppServiceLayers
         public bool Delete(int id)
         {
             var student = data.GetAllStudents()
-                .FirstOrDefault(s => s.StudenID == id);
+                .FirstOrDefault(s => s.StudentID == id);
 
             if (student == null)
                   return false;

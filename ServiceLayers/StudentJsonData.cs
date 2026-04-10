@@ -5,50 +5,51 @@ using System.Text.Json;
 
 namespace DataLayers
 {
-    public class StudentJsonData
+
+        public class StudentJsonData : Interface_StudentManageDataService
     {
-        private string filePath = "students.json";
+        private string filePath = "SQL_Tables_Students.json";
 
         public List<Student_Data> GetAllStudents()
-        {
-              if (!File.Exists(filePath))
-                return new List<Student_Data>();
+            {
+                if (!File.Exists(filePath))
+                    return new List<Student_Data>();
 
                 var json = File.ReadAllText(filePath);
 
                 return JsonSerializer.Deserialize<List<Student_Data>>(json)
                    ?? new List<Student_Data>();
-        }
-        public void Adding(Student_Data student)
-        {
-               var students = GetAllStudents();
-                 students.Add(student);
+            }
+            public void Adding(Student_Data student)
+            {
+                var SQL_Tables_Students = GetAllStudents();
+                SQL_Tables_Students.Add(student);
 
-              string json = JsonSerializer.Serialize(students);
-             File.WriteAllText(filePath, json);
-        }
-        public void Delete(Student_Data student)
-        {
-              var students = GetAllStudents();
-             students.RemoveAll(s => s.StudenID == student.StudenID);
+                string json = JsonSerializer.Serialize(SQL_Tables_Students);
+                File.WriteAllText(filePath, json);
+            }
+            public void Delete(Student_Data student)
+            {
+                var SQL_Tables_Students = GetAllStudents();
+                SQL_Tables_Students.RemoveAll(b => b.StudentID == student.StudentID);
 
-                string json = JsonSerializer.Serialize(students);
-             File.WriteAllText(filePath, json);
-        }
-        public void Update(Student_Data updatedStudent)
-        {
-              var students = GetAllStudents();
+                string json = JsonSerializer.Serialize(SQL_Tables_Students);
+                File.WriteAllText(filePath, json);
+            }
+            public void Update(Student_Data updatedStudent)
+            {
+                var SQL_Tables_Students = GetAllStudents();
 
-             var student = students.FirstOrDefault(s => s.StudenID == updatedStudent.StudenID);
+                var student = SQL_Tables_Students.FirstOrDefault(a => a.StudentID == updatedStudent.StudentID);
 
-              if (student != null)
-              {
-                  student.StudentName = updatedStudent.StudentName;
-                student.StudentAge = updatedStudent.StudentAge;
-              }
+                if (student != null)
+                {
+                    student.StudentName = updatedStudent.StudentName;
+                    student.StudentAge = updatedStudent.StudentAge;
+                }
 
-            string json = JsonSerializer.Serialize(students);
-             File.WriteAllText(filePath, json);
+                string json = JsonSerializer.Serialize(SQL_Tables_Students);
+                File.WriteAllText(filePath, json);
+            }
         }
     }
-}

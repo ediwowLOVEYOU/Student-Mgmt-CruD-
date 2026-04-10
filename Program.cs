@@ -61,7 +61,7 @@ namespace Student_Mgmt
 
                     Student_Data student = new Student_Data
                     {
-                        StudenID = IDNo,
+                        StudentID = IDNo,
                         StudentName = Name,
                         StudentAge = Age
                     };
@@ -89,7 +89,7 @@ namespace Student_Mgmt
                     {
                         foreach (var student in students)
                         {
-                            Console.WriteLine($"ID: {student.StudenID} Name: {student.StudentName} Age: {student.StudentAge}");
+                            Console.WriteLine($"ID: {student.StudentID} Name: {student.StudentName} Age: {student.StudentAge}");
                         }
 
                     }
